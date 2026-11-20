@@ -12,7 +12,8 @@ A small, reproducible **machine-learning demonstration** that classifies short L
 2. Trains a transparent **TF-IDF (word unigrams + bigrams) + logistic regression** classifier using scikit-learn.
 3. Evaluates on 40 withheld synthetic examples with per-label precision/recall/F1, a confusion matrix, and prediction records.
 4. Exposes a command-line interface for a single prediction.
-5. Runs repeatability, validation, and end-to-end tests with `pytest`; CI config is included.
+5. Exposes a **FastAPI** service with `GET /health` and `POST /predict`, including validated input and missing-model handling.
+6. Runs repeatability, leakage, input-validation, and end-to-end tests with `pytest`; CI config is included.
 
 ## Results (synthetic demonstration only)
 
@@ -77,6 +78,27 @@ Example response (scores may vary slightly with dependency versions):
 }
 ```
 
+## FastAPI inference (local demo)
+
+After installing dependencies and training with `python -m lng_event_classifier.train`, run:
+
+```bash
+uvicorn lng_event_classifier.api:app --reload
+```
+
+Open the interactive docs at **http://127.0.0.1:8000/docs**, or submit:
+
+```bash
+curl -X POST http://127.0.0.1:8000/predict \\
+  -H "Content-Type: application/json" \\
+  -d '{"text":"The vessel began unloading LNG at an import terminal."}'
+```
+
+The JSON response contains a predicted label, an **uncalibrated** model probability,
+and a warning that predictions do not verify actual LNG events. The API returns
+`422` for invalid input and `503` if the locally trained model is missing.
+See [API documentation](docs/api.md) for details, tests, and security limitations.
+
 ### Docker (optional)
 
 ```bash
@@ -84,7 +106,16 @@ docker build -t lng-event-classifier .
 docker run --rm lng-event-classifier
 ```
 
-The Docker container runs training and writes outputs **inside** the container; mounting a host output directory is needed to retain them. Docker is optional and not required to reproduce the baseline.
+The original Docker container runs training and writes outputs **inside** the container; mounting a host output directory is needed to retain them. Docker is optional and not required to reproduce the baseline.
+
+To build and serve the API in a separate container (local demonstration only):
+
+```bash
+docker build -f Dockerfile.api -t lng-event-api .
+docker run --rm -p 8000:8000 lng-event-api
+```
+
+This API container builds a model from the synthetic sample inside the image.
 
 ## Repository structure
 
@@ -93,15 +124,18 @@ lng-event-classifier/
 ├── .github/workflows/ci.yml        # tests and a fresh training run on push/PR
 ├── data/synthetic_events.csv      # 120 fictional labeled reports
 ├── docs/data-dictionary.md        # schema, label guide, leakage considerations
+├── docs/api.md                    # API setup, examples, limitations
 ├── lng_event_classifier/
 │   ├── data.py                    # input and split validation
 │   ├── labels.py                  # ten-category taxonomy
 │   ├── model.py                   # TF-IDF + logistic regression baseline
 │   ├── train.py                   # CLI for training and metrics
-│   └── predict.py                 # inference CLI
+│   ├── predict.py                 # inference CLI
+│   └── api.py                     # FastAPI inference service
 ├── reports/                       # synthetic benchmark reports
-├── tests/                         # five automated tests
-├── Dockerfile                     # optional reproducibility container
+├── tests/                         # classifier, leakage and API tests
+├── Dockerfile                     # optional training container
+├── Dockerfile.api                 # optional API container
 ├── LICENSE, .gitignore, pyproject.toml
 └── requirements.txt, requirements-dev.txt
 ```
@@ -118,6 +152,7 @@ lng-event-classifier/
 ## Roadmap
 
 - [x] Version 0.1: transparent synthetic dataset, ten-label baseline, evaluation, tests, CI configuration
+- [x] API extension: local FastAPI inference, input validation, API tests
 - [ ] Version 0.2: independently sourced and licensed small real-world gold set with URL provenance
 - [ ] Version 0.3: temporal/grouped evaluation, unknown-class handling, model calibration
 - [ ] Version 0.4: connect manually reviewed output to the separate Arctic LNG Evidence Tracker
