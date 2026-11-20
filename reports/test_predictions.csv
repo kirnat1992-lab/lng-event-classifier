@@ -1,0 +1,41 @@
+event_id,text,label,predicted_label,predicted_probability,correct
+DEMO-01-09,The carrier loaded another consignment at the export terminal.,loading,loading,0.139,True
+DEMO-01-10,Berth records show loading of LNG was carried out overnight.,loading,loading,0.1422,True
+DEMO-01-11,An export cargo was transferred from shore storage into the tanker.,loading,ship_to_ship_transfer,0.1349,False
+DEMO-01-12,The vessel completed its LNG loading schedule at the liquefaction dock.,loading,loading,0.1673,True
+DEMO-02-09,The LNG vessel departed the harbour following cargo operations.,departure,departure,0.1299,True
+DEMO-02-10,The ship sailed out of the export port during the evening.,departure,departure,0.1378,True
+DEMO-02-11,The tanker was recorded leaving the terminal approaches.,departure,discharge,0.1252,False
+DEMO-02-12,The LNG carrier cast off and departed the loading jetty.,departure,departure,0.1616,True
+DEMO-03-09,The LNG tanker reached its scheduled destination harbour.,arrival,arrival,0.1449,True
+DEMO-03-10,The ship arrived at the import terminal early in the morning.,arrival,arrival,0.1631,True
+DEMO-03-11,The carrier was recorded entering the receiving port basin.,arrival,arrival,0.1537,True
+DEMO-03-12,The vessel reached the destination anchorage and awaited a berth.,arrival,arrival,0.1905,True
+DEMO-04-09,The import terminal received LNG unloaded from the carrier.,discharge,discharge,0.1375,True
+DEMO-04-10,Unloading was recorded after the tanker berthed at the destination.,discharge,arrival,0.1405,False
+DEMO-04-11,The ship discharged a full consignment of LNG to the import site.,discharge,ship_to_ship_transfer,0.117,False
+DEMO-04-12,Terminal records show the end of LNG offloading operations.,discharge,loading,0.1357,False
+DEMO-05-09,Two tankers conducted a side-by-side LNG transfer operation.,ship_to_ship_transfer,ship_to_ship_transfer,0.1911,True
+DEMO-05-10,The vessel discharged LNG into a second ship offshore.,ship_to_ship_transfer,ship_to_ship_transfer,0.1434,True
+DEMO-05-11,The receiving ship took on cargo during an STS encounter.,ship_to_ship_transfer,ship_to_ship_transfer,0.1549,True
+DEMO-05-12,Marine reports describe an offshore tanker-to-tanker transfer of LNG.,ship_to_ship_transfer,ship_to_ship_transfer,0.1814,True
+DEMO-06-09,The LNG carrier made a course change toward a new discharge location.,route_diversion,arrival,0.1155,False
+DEMO-06-10,The ship rerouted to a different receiving harbour.,route_diversion,route_diversion,0.122,True
+DEMO-06-11,An amended voyage plan lists an alternative import destination.,route_diversion,route_diversion,0.1443,True
+DEMO-06-12,The tanker diverted its passage away from the originally announced port.,route_diversion,route_diversion,0.1432,True
+DEMO-07-09,The tanker arrival is postponed after an operational delay.,delay,delay,0.1284,True
+DEMO-07-10,Weather disruptions kept the LNG ship waiting offshore.,delay,vessel_status,0.1224,False
+DEMO-07-11,The vessel missed its berth window and is queued at anchorage.,delay,delay,0.1163,True
+DEMO-07-12,The terminal rescheduled the carrier due to congestion and delays.,delay,delay,0.1376,True
+DEMO-08-09,The LNG vessel was designated by a sanctions authority.,sanctions,sanctions,0.1375,True
+DEMO-08-10,An official notice imposed restrictive measures on the tanker.,sanctions,sanctions,0.1793,True
+DEMO-08-11,The operator was added to a government sanctions register.,sanctions,sanctions,0.2075,True
+DEMO-08-12,A newly published sanctions decision named the vessel.,sanctions,sanctions,0.1847,True
+DEMO-09-09,The LNG tanker was placed under a port detention order.,detention,sanctions,0.1359,False
+DEMO-09-10,Authorities seized the vessel and commenced an investigation.,detention,detention,0.1364,True
+DEMO-09-11,The carrier was held in port while officials reviewed paperwork.,detention,detention,0.1709,True
+DEMO-09-12,The ship could not depart because of an official detention.,detention,sanctions,0.1386,False
+DEMO-10-09,The carrier latest AIS signal places it offshore.,vessel_status,vessel_status,0.1145,True
+DEMO-10-10,Tracking updates show the tanker at a steady cruising speed.,vessel_status,vessel_status,0.1383,True
+DEMO-10-11,The ship navigation status changed from underway to anchored.,vessel_status,vessel_status,0.1486,True
+DEMO-10-12,The LNG carrier latest position places it in international waters.,vessel_status,vessel_status,0.1453,True

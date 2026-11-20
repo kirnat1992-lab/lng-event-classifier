@@ -1,0 +1,9 @@
+[project]
+name = "lng-event-classifier"
+version = "0.1.0"
+description = "Transparent NLP baseline for synthetic LNG shipping events"
+requires-python = ">=3.10"
+license = "MIT"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
