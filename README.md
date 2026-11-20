@@ -1,6 +1,6 @@
 # LNG Event Classifier — Reproducible NLP Baseline
 
-[![Python CI](https://img.shields.io/badge/CI-GitHub%20Actions-blue)](.github/workflows/ci.yml) [![Python](https://img.shields.io/badge/Python-3.10%2B-blue)](https://www.python.org/) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Python CI](https://github.com/kirnat1992-lab/lng-event-classifier/actions/workflows/ci.yml/badge.svg)](https://github.com/kirnat1992-lab/lng-event-classifier/actions/workflows/ci.yml) [![Python](https://img.shields.io/badge/Python-3.10%2B-blue)](https://www.python.org/) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 A small, reproducible **machine-learning demonstration** that classifies short LNG shipping-event descriptions into 10 categories. Built as a first AI/ML portfolio project at the intersection of **NLP, energy economics, shipping intelligence, and research reproducibility**.
 
@@ -30,7 +30,7 @@ The model is a baseline, not a production system. Its predictions have uncalibra
 
 ![Confusion matrix for 40 synthetic test records](reports/confusion_matrix.png)
 
-### Error analysis (real test-set mistakes)
+### Error analysis (mistakes on synthetic test set)
 
 Examples of mistakes in the **synthetic** test set reveal why this is a research baseline, not an evidence-verification tool:
 
@@ -49,7 +49,7 @@ These are directly extracted from `reports/test_predictions.csv`; inspect that f
 Requirements: Python **3.10+**. No API keys, paid services, web access, or GPU required.
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/lng-event-classifier.git
+git clone https://github.com/kirnat1992-lab/lng-event-classifier.git
 cd lng-event-classifier
 python -m venv .venv
 # macOS/Linux: source .venv/bin/activate
@@ -126,4 +126,4 @@ lng-event-classifier/
 
 Portfolio research prototype by **Natalia Kirsanova**, PhD candidate at Central European University, working on LNG markets, energy security, and computational research methods.
 
-**License:** MIT for the code and original synthetic examples. No real shipping reports or confidential NEST project data are included.
+**License:** MIT for the code and original synthetic examples. All dataset records in this demonstration are fictional and created specifically for this project.
